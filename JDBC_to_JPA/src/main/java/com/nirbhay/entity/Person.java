@@ -1,14 +1,29 @@
 package com.nirbhay.entity;
 
-public class Person {
+import jakarta.persistence.*;
 
+import java.util.Date;
+
+
+@Entity
+@NamedQuery(name = "find-all-person",query = "Select p from Person p")
+public class Person {
+    public Person() {
+//        this.id = id;
+    }
+
+    @Id
+    @GeneratedValue
     private Integer id;
     private String name;
     private String location;
-    private String birth_date;
 
-    public Person() {
-//        this.id = id;
+    private Date birth_date;
+
+    public Person(String name, String location, Date birth_date) {
+        this.name = name;
+        this.location = location;
+        this.birth_date = birth_date;
     }
 
     @Override
@@ -21,7 +36,7 @@ public class Person {
                 '}';
     }
 
-    public Person(Integer id, String name, String location, String birth_date) {
+    public Person(Integer id, String name, String location, Date birth_date) {
         this.id = id;
         this.name = name;
         this.location = location;
@@ -52,11 +67,11 @@ public class Person {
         this.location = location;
     }
 
-    public String getBirth_date() {
+    public Date getBirth_date() {
         return birth_date;
     }
 
-    public void setBirth_date(String birth_date) {
+    public void setBirth_date(Date birth_date) {
         this.birth_date = birth_date;
     }
 }
